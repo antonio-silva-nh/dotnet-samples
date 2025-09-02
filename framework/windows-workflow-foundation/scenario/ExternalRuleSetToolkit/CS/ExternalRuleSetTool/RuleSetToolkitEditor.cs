@@ -614,6 +614,10 @@ namespace Microsoft.Samples.Rules.ExternalRuleSetToolkit
             Assembly assembly = null;
             if (!String.IsNullOrEmpty(assemblyPath)) 
             {
+                if (assemblyPath.Contains("../") || assemblyPath.Contains(@"..\"))
+                {
+                    throw new ArgumentException("Invalid file path");
+                }
                 try
                 {
                     FileInfo assemblyFileInfo = new FileInfo(assemblyPath);
