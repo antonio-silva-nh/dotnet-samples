@@ -65,6 +65,8 @@ spec:
         # but which still share the same storage and other resources.
         orleans/clusterId: votingapp
     spec:
+      securityContext:
+        runAsNonRoot: true
       containers:
         - name: main
           image: dncvotingapp.azurecr.io/votingapp
