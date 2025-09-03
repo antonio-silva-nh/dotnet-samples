@@ -43,6 +43,7 @@ namespace Microsoft.ServiceModel.Samples
                 wrapperSettings.ValidationType = ValidationType.Schema;
                 wrapperSettings.ValidationEventHandler +=
                     new ValidationEventHandler(InspectionValidationHandler);
+                wrapperSettings.DtdProcessing = DtdProcessing.Ignore;
                 XmlReader wrappedReader = XmlReader.Create(bodyReader, wrapperSettings);
 
                 // pull body into a memory backed writer to validate
