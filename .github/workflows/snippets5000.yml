@@ -57,8 +57,12 @@ jobs:
     - name: Run snippets 5000 for PR
       env:
         GitHubKey: ${{ secrets.GITHUB_TOKEN }}
+        WORKSPACE_PATH: ${{ github.workspace }}
+        PR_NUMBER: ${{ github.event.number }}
+        REPO_OWNER: ${{ github.repository_owner }}
+        REPO_NAME: ${{ github.event.repository.name }}
       run: |
-        dotnet run --project docs-tools\snippets5000\Snippets5000\Snippets5000.csproj -- --sourcepath "${{ github.workspace }}" --pullrequest ${{ github.event.number }} --owner ${{ github.repository_owner }} --repo ${{ github.event.repository.name }}
+        dotnet run --project docs-tools\snippets5000\Snippets5000\Snippets5000.csproj -- --sourcepath "$WORKSPACE_PATH" --pullrequest $PR_NUMBER --owner $REPO_OWNER --repo $REPO_NAME
 
     # Update build output json file
     - name: Upload build results
